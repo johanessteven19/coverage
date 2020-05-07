@@ -1,0 +1,35 @@
+stages:
+  - test
+  - deploy
+
+unittest:
+  image: python:3.7.3
+  stage: test
+  before_script:
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list
+    - pip install -r requirements.txt
+    - python manage.py makemigrations
+    - python manage.py migrate
+  when: on_success
+  script:
+    - coverage run --source='.' manage.py test app10
+    - coverage report -m
+  only:
+    - master
+
+
+Deployment:
+  image: ruby:2.4
+  stage: deploy
+  before_script:
+    - gem install dpl
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  script:
+    - dpl --provider=heroku --app=story10jo --api-key=$HEROKU_API_KEY
+    - export HEROKU_API_KEY=$HEROKU_API_KEY
+  environment:
+    name: production
+    url: https://story10jo.herokuapp.com/
+  only:
+    - master
