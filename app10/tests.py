@@ -4,4 +4,4 @@ from django.test import TestCase, Client
 class Story10Test(TestCase):
     def test_url_exist(self):
         response = Client().get('')
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,300)
