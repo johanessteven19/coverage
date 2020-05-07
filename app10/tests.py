@@ -9,4 +9,4 @@ class Story10Test(TestCase):
     def test_inside_html(self):
         response=Client().get('')
         response_content = response.content.decode('utf-8')
-        self.assertIn("test", response_content)
+        self.assertIn("Login", response_content)
