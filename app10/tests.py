@@ -30,7 +30,7 @@ class FunctionalTest(TestCase):
         self.selenium  = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
         super(FunctionalTest, self).setUp()
 
-    def test_story10_url(self):
+    def test_url_exists(self):
         selenium = self.selenium
         selenium.get('http://127.0.0.1:8000/')
 
@@ -54,7 +54,7 @@ class FunctionalTest(TestCase):
         selenium.implicitly_wait(10)
         self.assertIn('Login!', selenium.page_source)
 
-        # test_story10_log_in_and_check_welcome
+        
         username = selenium.find_element_by_id('id_username')
         username.send_keys("tes2")
         password = selenium.find_element_by_id('id_password')
@@ -62,9 +62,8 @@ class FunctionalTest(TestCase):
         button = selenium.find_element_by_id('loginbutton')
         button.click()
         selenium.implicitly_wait(10)
-        self.assertIn('Hi, tes2!', selenium.page_source)
+        self.assertIn('Hi tes2!', selenium.page_source)
 
-        #test_story10_log_out_and_check_main_page
         logout = selenium.find_element_by_id('logoutbutton')
         logout.click()
         selenium.implicitly_wait(10)
