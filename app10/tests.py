@@ -65,6 +65,7 @@ class FunctionalTest(TestCase):
         self.assertIn('Hi tes2!', selenium.page_source)
 
         logout = selenium.find_element_by_id('logoutbutton')
+        selenium.implicitly_wait(10)
         logout.click()
         selenium.implicitly_wait(10)
         self.assertIn('You are not logged in!', selenium.page_source)
