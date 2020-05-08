@@ -8,8 +8,22 @@
 <div class="text-center">
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
+    <label for="id_username">Username: </label>
+      {{ form.username }}
+      <br>
+    <label for="id_password1">Enter your password:  </label>
+      {{ form.password1 }}
+      <br>
+    <label for="id_password2">Confirm your password:  </label>
+      {{ form.password2 }}
+      <br>
+    <label for="id_email">Email:  </label>
+      {{ form.email }}
+      <br>
+    <label for="id_pic">Upload your profile picture! </label>
+      {{ form.picture }}
+      <br>
+    <button type="submit" id="regbutton">Sign up</button>
   </form>
 </div>
 {% endblock %}
