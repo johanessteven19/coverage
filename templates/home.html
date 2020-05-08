@@ -6,9 +6,7 @@
 {% block content %}
 {% if user.is_authenticated %}
     <div class="row-lg-12 text-center mt-5 mb-3"><h2>Hi {{ user.username }}! <br>
-        Your Email address is: {{ user.email }}<br>
-        Your profile picture is: <br>
-        {{ user.picture }}</h2></div>
+        Your Email address is: {{ user.email }}<br></h2></div>
     <p><a href="{% url 'logout' %}" id="logoutbutton"><div class="col text-center align-items-center"><h3>Logout</h3></div></a></p>
 {% else %}
     <div class="row-lg-12 text-center mt-5 mb-3"><h2>You are not logged in!</h2></div>
