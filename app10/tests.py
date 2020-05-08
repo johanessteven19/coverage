@@ -5,6 +5,7 @@ from django.http import HttpRequest
 # from app.models import TopLiked
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
@@ -65,7 +66,7 @@ class FunctionalTest(TestCase):
         self.assertIn('Hi tes2!', selenium.page_source)
 
         logout = selenium.find_element_by_id('logoutbutton')
-        selenium.implicitly_wait(10)
+        logout.send_keys(Keys.TAB)
         logout.click()
         selenium.implicitly_wait(10)
         self.assertIn('You are not logged in!', selenium.page_source)
